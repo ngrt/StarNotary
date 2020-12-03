@@ -1,9 +1,8 @@
 pragma solidity >=0.4.24;
 
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Mintable.sol";
 
-contract StarNotary is ERC721Full, ERC721Mintable {
+contract StarNotary is ERC721Full {
 
     // Star data
     struct Star {
@@ -57,8 +56,8 @@ contract StarNotary is ERC721Full, ERC721Mintable {
     }
 
     function transferStar(address _to1, uint256 _tokenId) public {
-        bool isSenderOwnerOfOneToken = ownerOf(_tokenId) == msg.sender;
-        require(isSenderOwnerOfOneToken, "You don't own the star to transfer.");
+        bool isSenderOwnerOfToken = ownerOf(_tokenId) == msg.sender;
+        require(isSenderOwnerOfToken, "You don't own the star to transfer.");
         transferFrom(msg.sender, _to1, _tokenId);
     }
 }
